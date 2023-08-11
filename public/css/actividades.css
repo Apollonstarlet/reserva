@@ -1,0 +1,417 @@
+
+.texto{
+    width: 100%;
+}
+.texto p{
+    font-size: 16px;
+    text-align: justify;
+    line-height: 23px;
+    margin: 0 100px;
+}
+
+.lista{
+    padding-top: 40px;
+}
+.lista h3{
+    font-size: 16px;
+    font-weight: 900;
+    margin-left: 100px;
+    margin-bottom: 10px;
+}
+
+.lista ul li{
+    font-size: 17px;
+    margin-left: 100px;
+    line-height: 27px;
+    list-style: none;
+}
+
+
+.contenido-rec{
+    display: flex;
+    flex-wrap: wrap;
+}
+.celda{
+    width: 30%;
+    height: 250px;
+    margin: 0 15px;
+    background: #f0eded;
+    box-shadow: 2px 3px 5px rgba(73, 69, 52, 0.4);
+}
+.celda .letras{
+    margin: 40px 30px;
+}
+.celda h3{
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.celda .letras p{
+    font-size: 16px;
+    text-align: justify;
+    line-height: 22px;
+}
+
+
+
+#actividades-1{
+    padding-top: 100px;
+}
+.contenido{
+    max-width: 1100px;
+    margin: auto;
+}
+
+.porfolio{
+    color: #2D2f3a;
+    font-size: 13px;
+}
+.g-porfolio{
+    display: flex;
+}
+.porfolio-txt-1 h2{
+    font-size: 30px;
+    margin-bottom: 35px;
+}
+.porfolio-txt-2 h2{
+    font-size: 30px;
+    margin-bottom: 35px;
+}
+
+.porfolio-txt-2 {
+    text-align: right;
+}
+
+
+.imgs img{
+    width: 300px;
+    width: 400px;
+    margin: 0px 20px 70px 20px;
+    border-radius: 15px;
+}
+
+@media(max-width: 991px) {
+    .porfolio{
+        padding: 30px;
+    }
+    .g-porfolio{
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    .porfolio-txt-2{
+        text-align: center;
+    }
+    .imgs img{
+      width: 90%;
+    }
+}
+@media(max-width: 393px){
+    #actividades-1{
+        padding-top: 5px;
+    }
+
+}
+@media(max-width: 375px){
+    #actividades-1{
+        margin-top: 130px;
+    }
+    .cultura{
+        padding-top: 120px;
+    }
+    .celda{
+        width: 100%;
+        margin-top: 15px;
+    }
+    .texto p{
+        margin: 0 10px;
+    }
+}
+@media(max-width: 390px){
+    #actividades-1{
+        padding-top: 10px; 
+    }
+    .porfolio{
+        margin-top: 0;
+    }
+    .celda{
+        width: 100%;
+    }
+}
+
+
+
+/*TARJETAS*/
+
+
+.contenido-tarjeta{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.tarjeta {
+    position: relative;
+    width: 300px;
+    height: 450px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 5px rgba(73, 69, 52, 0.4);
+    margin: 40px;
+}
+
+.tarjeta .contenido-tar {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;  
+    text-align: center;  
+    padding: 20px;
+    background: #fff;
+}
+
+.tarjeta .contenido-tar .imagen {
+    height: 50%;
+    margin-bottom: 20px;
+}
+
+.tarjeta .contenido-tar .imagen img {
+    position: relative;
+    width: 90%;
+    height: 150px;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.tarjeta .contenido-tar span {
+    position: absolute;
+    width: 450px;
+    height: 200px;
+    background: linear-gradient(to right, #812F33, #A67368);
+    transform: rotate(-35deg);
+    top: -50px;
+    left: -100px;
+}
+
+.tarjeta .contenido-tar h4 {
+    font-size: 18px;
+    color: #1a1919;
+    margin-bottom: 5px;
+}
+
+.tarjeta .contenido-tar h6 {
+    font-size: 13px;
+    color: #5e2066;
+}
+
+.tarjeta .contenido-tar p {
+    font-size: 13px;
+    color: #1a161f;
+    margin-top: 10px;
+}
+
+.tarjeta .links {
+    position: absolute;
+    z-index: 90;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 2px 3px 5px rgba(73, 69, 52, 0.4);
+    padding: 20px;
+    align-items: center;
+    right: 10px;
+    top: 15px;
+    transition: .5s;
+}
+
+.tarjeta:hover .links {
+    right: -50px;
+    border-radius: 0 10px 10px 0;
+}
+
+
+.tarjeta .links a {
+    font-size: 20px;
+    color: #646069;
+}
+
+.tarjeta .links a:nth-child(1):hover {
+    color: #0158ca;
+}
+
+.terjeta .links a:nth-child(2):hover {
+    color: #1C93E4;
+}
+
+.terjeta .links a:nth-child(3):hover {
+    color: #5D277D;
+}
+
+.tarjeta .links a:nth-child(4):hover {
+    color: #FE0000;
+}
+
+/*4 FOTOS*/
+
+
+.contenido4{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.h2-sub{
+    font-size: 3rem;
+    color: #233734;
+    font-weight: 600;
+    line-height: .4;
+}
+.head{
+    color: #000;
+    font-size: 3.7rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: .5rem;
+}
+
+.circle{
+    font-size: 1.5rem;
+    color: #0158ca;
+    margin: 0 1.6rem;
+}
+.fil{
+    text-transform: uppercase;
+    font-size: 3rem;
+}
+.global{
+   text-align: center;
+   margin-top: 3.9rem; 
+}
+
+.hea-darkk{
+    color: #000;
+    letter-spacing: .7rem;
+    margin-right: -.7rem;
+}
+
+.global .h2-sub{
+    letter-spacing: -1px;
+    line-height: .42;
+}
+
+.res-des{
+    margin-bottom: 3rem;
+    width: 50%;
+    height: 100%;
+}
+
+.res-des p{
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 2.4rem;
+    margin-left: 20px;
+}
+
+.disco .res-des{
+    padding-top: 3rem;
+    margin-bottom: 0;
+    margin-left: 20px;
+}
+
+.res-info{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+}
+
+.image-group{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+    width: 50%;
+}
+.image-group img{
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+}
+
+.slider{
+    width: 100%;
+}
+
+
+@media screen and (min-width: 900px){
+    .h2-sub{
+        font-size: 3rem;
+    }
+    .fil{
+        font-size: 3rem;
+    }
+    .head{
+       font-size: 4.7rem;
+       letter-spacing: .8rem; 
+    }
+    .pad-rig{
+        padding-right: 7rem;
+    }
+    
+
+}
+
+@media(max-width: 375px){
+    .image-group{
+        width: 100%;
+    }
+    .res-des{
+        width: 100%;
+    }
+    .image-group img{
+        width: 100%;
+        max-width: 100%;
+        height: 150px;
+    }
+
+}
+
+@media(max-width: 414px){
+    .image-group{
+        width: 100%;
+    }
+    .res-des{
+        width: 100%;
+    }
+    .image-group img{
+        width: 100%;
+        max-width: 100%;
+        height: 150px;
+    }
+    .celda{
+        width: 100%;
+        margin-top: 15px;
+    }
+    .texto p{
+        margin: 0 10px;
+    }
+
+}
+
+
+
+/*GALERIA*/
+
+
+
