@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <!--ICONO DE LA PESTAÑA-->
 <link rel="shortcut icon" href="imagenes/LaAurora_verde.jpg">
 <!--ICONOS FONT AWESOME-->

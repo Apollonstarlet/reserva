@@ -1,3 +1,23 @@
+@font-face {
+  font-family: "Futura";
+  src: url(../fuentes/Futura\ Round.ttf) format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Montecarlo";
+  src: url(../fuentes/montecarlo-webfont.ttf\ Round.ttf) format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "FuturaLig";
+  src: url(../fuentes/futura\ light\ bt.ttf) format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
 :root{
     --primary: #233734;
     --secundary: #9DA284;
@@ -194,7 +214,7 @@ section{
 
 .boton-abrir{
   width: 100%;
-  height: 46px;
+  height: 25px;
   background: #fff;
   text-align: center;
   margin: auto;
@@ -212,10 +232,12 @@ section{
 
 .desplegable{
   display: none;
+  border-style: solid;
+  border-color: #233734;
   background: #fff;
   position: absolute;
   width: 170px;
-  height: 100px;
+  height: 110px;
   overflow: hidden;
   overflow-y: scroll;
 }
@@ -699,7 +721,7 @@ section{
 }
 .header .navbar{
     width: 100%;
-    height: 40px;
+    height: 20px;
     margin: auto;
     text-align: center;
 }
@@ -839,7 +861,6 @@ section{
 }
 .availability form .box .input{
     width: 100%;
-    padding: 1rem;
     font-size: 16px;
     background: #fff;
 }
@@ -1040,6 +1061,8 @@ section{
   align-items: center;
   padding-bottom: 100px;
 }
+
+/*EVENTOS*/
 
 .informacion{
   width: 600px;
@@ -1246,7 +1269,7 @@ section{
     margin-left: 110px;
    }
    .header .navbar{
-    height: 310px;
+    height: 410px;
    }
     html{
         font-size: 50%;
@@ -1502,19 +1525,11 @@ section{
 /* fin de historia*/
 
 
-
-
-
-
-
   .right{
     background: #fff;
     border-radius: 10px;
   }
   
-
-  
-
   .container {
     max-width: 95%;
     margin: auto;
@@ -1899,7 +1914,7 @@ p {
   }
 
   .home h1 {
-    font-size: 70px;
+    font-size: 40px;
   }
 
 
@@ -1958,7 +1973,7 @@ p {
     margin-left: 100px;
   }
   #evento-click:checked ~ .desplegable{
-    width: 318px;
+    width: 198px;
   }
 
   .availability form .box .uno{

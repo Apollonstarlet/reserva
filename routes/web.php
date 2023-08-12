@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RoomController;
+use App\Http\Controllers\SuitesController;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
@@ -28,11 +28,14 @@ Route::get('clear', function() {
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('view:clear');
     $exitCode = Artisan::call('route:clear');
-    return 'DONE'; //Return anything
+    return back(); //Return anything
 });
+
+Route::get('fresh', function() { Artisan::call('migrate:fresh'); return back();});
+
 // locale route
 Route::get('lang/{locale}', 'LanguageController@swap');
 
 // Dashboard Route
 Route::get('/', 'DashboardController@dashboard');
-Route::post('search', 'RoomController@index');
+Route::post('search', 'SuitesController@index');
