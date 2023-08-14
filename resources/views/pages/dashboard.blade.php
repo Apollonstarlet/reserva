@@ -29,7 +29,7 @@
                   $(function() {
                       $('input[name="fecha"]').daterangepicker({
                               locale: {
-                                  format: "DD/MM/YYYY"
+                                  format: "YYYY-MM-DD"
                               },
 
                               startDate: moment().startOf('hour'),
@@ -828,6 +828,7 @@
 
 {{-- vendor script --}}
 @section('vendor-script')
+<script src="js/header.js"></script>
 @endsection
 
 {{-- page script --}}

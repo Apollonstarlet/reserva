@@ -11,29 +11,28 @@
 @section('menu')
   <div id="menu-btn" class="fas fa-bars"></div>
   <nav class="navbar" style="width: 60%;">
-      <a href="#home">Casa</a>
-      <a href="#habitaciones">Suites</a>
-      <a href="#amenidades">Amenidades</a>
-      <a href="#info">Eventos</a>
-      <a href="#historia">Historia</a>
-      <a href="#actividades">Actividades</a>
-      <a href="#contacto">Contacto</a>
+      <a href="{{env('APP_URL')}}#home">Casa</a>
+      <a href="{{env('APP_URL')}}#habitaciones">Suites</a>
+      <a href="{{env('APP_URL')}}#amenidades">Amenidades</a>
+      <a href="{{env('APP_URL')}}#info">Eventos</a>
+      <a href="{{env('APP_URL')}}#historia">Historia</a>
+      <a href="{{env('APP_URL')}}#actividades">Actividades</a>
+      <a href="{{env('APP_URL')}}#contacto">Contacto</a>
       <br>
       
       <div class="availability">
         <form action="{{ asset('search') }}" method="post" style="padding:1rem;">
         {{ csrf_field() }}
           <div class="box">
+              <p id="num_date" style="display: none;">{{$data['dates']}}</p>
               <input type="text" name="fecha" class="input responsive" placeholder="Seleccionar fecha" style="font-size: 13px; cursor: pointer; height: 25px; border-style: solid; border-color: #233734;" value="{{$data['date']}}" />
               <script>
                   $(function() {
+                      let dates = Number($('p#num_date').innerHTML);
                       $('input[name="fecha"]').daterangepicker({
                               locale: {
-                                  format: "DD/MM/YYYY"
+                                  format: "YYYY-MM-DD"
                               },
-
-                              startDate: moment().startOf('hour'),
-                              endDate: moment().startOf('hour').add(48, 'hour')
                           },
 
                           function(start, end, label) {
@@ -60,7 +59,7 @@
                           <input type="number" min="1" max="1" value="1" class="input" name="suite" style="display: none;">
                       </div>
 
-                      <div class="box uno" style="display: flex; margin-bottom: 8px;">
+                      <div class="box uno" style="display: flex;width: 150px;">
                           <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
                           <input type="number" min="1" max="5" value="2" class="input" name="adultos" style="border: solid 1px #0000005e; width: 60px; height: 35px; border-radius: 5px;">
                       </div>
@@ -71,7 +70,6 @@
 
                       <div class="desplegable-suite" style="border-top: 1px solid #00000073; margin-top: 10px;">
                           <br>
-
                           <label for="click-agregar" value="desactivar caja" onclick="desactivarcaja();desactivaradultos()" class="boton-agregarR" style="font-size: 10px; padding: 6px;">Eliminar suite</label>
                           <!--SUITE 2-->
                           <label for="" class="form__label">Suite 2</label>
@@ -85,10 +83,9 @@
                                   document.getElementById('caja').disabled = true
                               }
                           </script>
-
-                          <div class="box uno" style="display: flex;">
+                          <div class="box uno" style="display: flex;width: 150px;">
                               <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                              <input type="number" min="0" max="5" value="0" class="input" name="adultos2" id="adultos" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
+                              <input type="number" min="1" max="5" value="1" class="input" name="adultos2" id="adultos" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
                               <script type="text/javascript">
                                   function activaradultos() {
                                       document.getElementById('adultos').disabled = false
@@ -123,9 +120,9 @@
                                   }
                               </script>
 
-                              <div class="box uno" style="display: flex;">
+                              <div class="box uno" style="display: flex;width: 150px;">
                                   <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                                  <input type="number" min="0" max="5" value="0" class="input" name="adultos3" id="adultos3" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
+                                  <input type="number" min="1" max="5" value="1" class="input" name="adultos3" id="adultos3" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
                                   <script type="text/javascript">
                                       function activaradultos3() {
                                           document.getElementById('adultos3').disabled = false
@@ -159,9 +156,9 @@
                                       }
                                   </script>
 
-                                  <div class="box uno" style="display: flex;">
+                                  <div class="box uno" style="display: flex;width: 150px;">
                                       <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                                      <input type="number" min="0" max="5" value="0" class="input" name="adultos4" id="adultos4" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
+                                      <input type="number" min="1" max="5" value="1" class="input" name="adultos4" id="adultos4" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
                                       <script type="text/javascript">
                                           function activaradultos4() {
                                               document.getElementById('adultos4').disabled = false
@@ -194,9 +191,9 @@
                                           }
                                       </script>
 
-                                      <div class="box uno" style="display: flex;">
+                                      <div class="box uno" style="display: flex;width: 150px;">
                                           <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                                          <input type="number" min="0" max="5" value="0" class="input" name="adultos5" id="adultos5" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
+                                          <input type="number" min="1" max="5" value="1" class="input" name="adultos5" id="adultos5" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
                                           <script type="text/javascript">
                                               function activaradultos5() {
                                                   document.getElementById('adultos5').disabled = false
@@ -246,15 +243,35 @@
           <p style="text-align: left;color:#c7893e"><i class="fa-solid fa-feather"></i>  Terms and Conditions</p>
           @php
           $price = (float)$suite->price * (int)$data['dates'];
+          $price2 = $price * 2;
+          $price3 = $price * 3;
+          $price4 = $price * 4;
+          $price5 = $price * 5;
           @endphp
           <p style="font-size: 18px;text-align: left;">Total {{$data['adults']}} Adults, {{$data['dates']}} Nights - USD $ {{$price}}</p>
-          <button class="btn">Seleccionar</button>
+          <button id="{{$price}}" class="btn select_btn" style="width:200px;">Seleccionar</button>
+          <select id="{{$suite->id}}" name="suite" class="btn" style="width:200px; display:none; background-color:#835e32; font-size:13px;">
+            <option value="1">1 Suites USD ${{$price}}</option>
+            <option value="2">2 Suites USD ${{$price2}}</option>
+            <option value="3">3 Suites USD ${{$price3}}</option>
+            <option value="4">4 Suites USD ${{$price4}}</option>
+            <option value="0">Remove</option>
+          </select>
           <div style="height:5px;"></div>
       </div>
     </div>
     @endforeach
 </section>
-
+<div id="booking" style="width:100%; background:#fff; position:fixed; bottom:0; box-shadow: 0 -4px 10px 0 rgba(0,0,0,.2); padding:10px; display: none;">
+    <h1 id="suites"> Suites, {{$data['adults']}} Adultos, {{$data['dates']}} Nights</h1>
+    <h1 id="total_price"></h1>
+    <form action="{{ asset('search') }}" method="post">
+        <input type="hidden" name="dates" value="{{$data['dates']}}">
+        <input type="hidden" name="total_price">
+        <button type="submit" id="booking" class="btn">Booking</button>
+    </form>
+    <div style="height:5px;"></div>
+</div>
 @endsection
 
 {{-- vendor script --}}
@@ -263,5 +280,35 @@
 
 {{-- page script --}}
 @section('page-script')
-
+<script>
+  $(function() {
+    var suit = 0;
+    var price;
+    var req = $("h1#suites").html();
+    $("button.select_btn").click(function(){
+      $(this).css({"display":"none"});
+      price = $(this).attr('id');
+      $(this).next().css({"display":""});
+      $("div#booking").css({"display":""});
+      suit = 1;
+      $("h1#suites").html(suit + req);
+      $("h1#total_price").html("USD $" + price);
+    });
+    $('select').change(function(){ 
+        var value = $(this).val();
+        if(value == '0'){
+            $("div#booking").css({"display":"none"});
+            $(this).css({"display":"none"});
+            $(this).prev().css({"display":""});
+            suit = 0;
+            price = 0;
+        } else{
+            suit = Number(value);
+            price = Number(price) * suit;
+            $("h1#suites").html(suit + req);
+            $("h1#total_price").html("USD $" + price);
+        }
+    });
+  });
+</script>
 @endsection

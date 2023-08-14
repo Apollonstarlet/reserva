@@ -1,20 +1,20 @@
 @font-face {
   font-family: "Futura";
-  src: url(../fuentes/Futura\ Round.ttf) format('truetype');
+  src: url(../fuentes/Futura_Round.ttf) format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 
 @font-face {
   font-family: "Montecarlo";
-  src: url(../fuentes/montecarlo-webfont.ttf\ Round.ttf) format('truetype');
+  src: url(../fuentes/montecarlo-webfont.ttf) format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 
 @font-face {
   font-family: "FuturaLig";
-  src: url(../fuentes/futura\ light\ bt.ttf) format('truetype');
+  src: url(../fuentes/futura_light_bt.ttf) format('truetype');
   font-style: normal;
   font-weight: normal;
 }
@@ -964,24 +964,6 @@ section{
 }
 #controls label:hover {
   opacity: 1;
-}
-#slide1:checked ~ #controls label:nth-child(2),
-#slide2:checked ~ #controls label:nth-child(3),
-#slide3:checked ~ #controls label:nth-child(4),
-#slide4:checked ~ #controls label:nth-child(1) {
-  background: url(imagenes/circulo.pngz) no-repeat;
-  float:right;
-  margin: 0 -50px 0 0;
-  display: block;
-}
-#slide1:checked ~ #controls label:nth-last-child(2),
-#slide2:checked ~ #controls label:nth-last-child(3),
-#slide3:checked ~ #controls label:nth-last-child(4),
-#slide4:checked ~ #controls label:nth-last-child(1) {
-  background: url(https://image.flaticon.com/icons/svg/130/130882.svg) no-repeat;
-  float:left;
-  margin: 0 0 0 -50px;
-  display: block;
 }
 #bullets {
   margin: 150px 0 0;

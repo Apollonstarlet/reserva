@@ -16,12 +16,8 @@ class SuitesController extends Controller
         $data['adults'] = $request->adultos;
         $data['date'] = $request->fecha;
         $fecha = explode(" - ",$data['date']);
-        $from = explode("/",$fecha[0]);
-        $to = explode("/",$fecha[1]);
-        $data['from'] = $from[2].'-'.$from[1].'-'.$from[0];
-        $data['to'] = $to[2].'-'.$to[1].'-'.$to[0];
-        $earlier = new DateTime($data['from']);
-        $later = new DateTime($data['to']);
+        $earlier = new DateTime($fecha[0]);
+        $later = new DateTime($fecha[1]);
         $data['dates'] = $later->diff($earlier)->format("%a");
         if(isset($request->suite2)){
             if($request->adultos2 > 0){
