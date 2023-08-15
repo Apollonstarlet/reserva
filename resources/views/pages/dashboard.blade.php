@@ -50,7 +50,7 @@
 
                   <div class="boton-abrir" style=" border-style: solid; border-color: #233734;">
                       <label for="evento-click" class="btn-open">
-                          <p style="font-size: 13px; padding-top: 3px; cursor: pointer;">Suites, Adultos</p>
+                          <p>Suites, Adultos</p>
                       </label>
                   </div>
 
@@ -60,7 +60,7 @@
                           <input type="number" min="1" max="1" value="1" class="input" name="suite" style="display: none;">
                       </div>
 
-                      <div class="box uno" style="display: flex; margin-bottom: 8px;">
+                      <div class="box uno" style="display: flex; margin-bottom: 8px; width: auto;">
                           <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
                           <input type="number" min="1" max="5" value="2" class="input" name="adultos" style="border: solid 1px #0000005e; width: 60px; height: 35px; border-radius: 5px;">
                       </div>

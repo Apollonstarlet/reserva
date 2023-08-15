@@ -11,9 +11,10 @@
     
     <!--ESTILOS CSS-->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/actividades.css">
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/custom.css">
     <!--CALENDARIO DOBLE PARA EL MOTOR-->
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/moment.min.js"></script>

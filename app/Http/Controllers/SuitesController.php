@@ -9,7 +9,7 @@ use DateTime;
 class SuitesController extends Controller
 {
     //
-    public function index(Request $request)
+    public function Search(Request $request)
     {
         $data = array();
         $data['suites'] = $request->suite;
@@ -45,5 +45,15 @@ class SuitesController extends Controller
         }
         $data['suite'] = Suites::where('guests', '>=', $data['adults'])->get();
         return view('/pages/search')->with('data', $data);
+    }
+
+    public function Booking(Request $request)
+    {
+        $data['suites'] = $request->suite;
+        $data['adults'] = $request->adultos;
+        $data['date'] = $request->date;
+        $data['dates'] = $request->dates;
+        $data['total'] = $request->total_price;
+        return view('/pages/booking')->with('data', $data);
     }
 }

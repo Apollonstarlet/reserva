@@ -37,5 +37,6 @@ Route::get('fresh', function() { Artisan::call('migrate:fresh'); return back();}
 Route::get('lang/{locale}', 'LanguageController@swap');
 
 // Dashboard Route
-Route::get('/', 'DashboardController@dashboard');
-Route::post('search', 'SuitesController@index');
+Route::get('/', 'DashboardController@Dashboard');
+Route::post('search', 'SuitesController@Search');
+Route::post('booking', 'SuitesController@Booking');

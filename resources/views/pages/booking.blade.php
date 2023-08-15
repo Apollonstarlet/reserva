@@ -59,7 +59,7 @@
                           <input type="number" min="1" max="1" value="1" class="input" name="suite" style="display: none;">
                       </div>
 
-                      <div class="box uno" style="display: flex;width: 150px; width: auto;">
+                      <div class="box uno" style="display: flex; width: auto;;">
                           <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
                           <input type="number" min="1" max="5" value="2" class="input" name="adultos" style="border: solid 1px #0000005e; width: 60px; height: 35px; border-radius: 5px;">
                       </div>
@@ -222,89 +222,113 @@
 {{-- page content --}}
 @section('content')
 <!--EVENTOS APARTADO-->
-<div style="height: 10vh;"></div>
+<div style="height: 100px;"></div>
 <section>
-    @foreach($data['suite'] as $suite)
-    <div style="height: 2vh;"></div>
-    <div class="res-info" style="width: 100%; border: 3px solid #ccc;">
-      <div class="res-des">
-          <div id="overflow">
-              <div class="inner">
-                  <img src="{{$suite->image}}" alt="">
+  <div class="row">
+    <div class="col-sm-6" style="font-size:1.5rem;">
+      <div class="row">
+        <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
+          <h2>Informacion Personal</h2>
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="name">
               </div>
-          </div>
-      </div>
-      <div class="res-des">
-          <h1 class="heading" style="font-size: 2.5rem;font-family: Montecarlo; font-weight: 200;">{{$suite->name}}</h1>
-          <p style="text-align: left;"><i class="fa-solid fa-house"></i> {{$suite->area}},&nbsp;&nbsp;<i class="fa-solid fa-bed"></i> {{$suite->num_beds}} camas,&nbsp;&nbsp;<i class="fa-solid fa-user"></i> Capacidad maxima: {{$suite->guests}}</p>
-          <p style="text-align: left;color:#c7893e"><i class="fa-solid fa-plus"></i>  full services</p>
-          <p style="font-family: Futura; text-align: justify; margin: 10px 10px;">{{$suite->description}}</p>
-          <p style="text-align: left;color:#c7893e"  data-toggle="modal" data-target="#myBtn"><i class="fa-solid fa-feather"></i>  Terms and Conditions</p>
-          @php
-          $price = (float)$suite->price * (int)$data['dates'];
-          $price2 = $price * 2;
-          $price3 = $price * 3;
-          $price4 = $price * 4;
-          $price5 = $price * 5;
-          @endphp
-          <p style="font-size: 18px;text-align: left;">Total {{$data['adults']}} Adults, {{$data['dates']}} Nights - USD $ {{$price}}</p>
-          <button id="{{$price}}" class="btn select_btn" style="width:250px;#233734">Seleccionar</button>
-          <select id="{{$suite->id}}" name="suite" class="btn" style="width:250px; display:none; background-color:#835e32;">
-            <option value="1" selected>1 Suites USD ${{$price}}</option>
-            <option value="2">2 Suites USD ${{$price2}}</option>
-            <option value="3">3 Suites USD ${{$price3}}</option>
-            <option value="4">4 Suites USD ${{$price4}}</option>
-            <option value="0">Remove</option>
-          </select>
-          <div style="height:5px;"></div>
+              <div class="form-group col-md-6">
+                <label>Apellidos</label>
+                <input type="text" class="form-control" name="lastname">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Phone</label>
+                <input type="phone" class="form-control" name="phone">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputState">Country</label>
+                <select id="inputState" class="form-control">
+                  <option value="mx" selected>Mexico</option>
+                  <option value="us">Unitied States</option>
+                  <option value="mx">Mexico</option>
+                  <option value="ca">Canada</option>
+                  <option value="uk">Unitied Kingdorm</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-    @endforeach
-</section>
-<div id="booking" style="width:100%; background:#fff; position:fixed; bottom:0; box-shadow: 0 -4px 10px 0 rgba(0,0,0,.2); padding:10px; display: none;">
-    <h1 id="suites"> Suites, {{$data['adults']}} Adultos, {{$data['dates']}} Nights</h1>
-    <h1 id="total_price"></h1>
-    <form action="{{ asset('booking') }}" method="post">
-        {{ csrf_field() }}
-        <input type="hidden" name="dates" value="{{$data['dates']}}">
-        <input type="hidden" name="adultos" value="{{$data['adults']}}">
-        <input type="hidden" name="date">
-        <input type="hidden" name="id">
-        <input type="hidden" name="suite">
-        <input type="hidden" name="total_price">
-        <button type="submit" id="booking" class="btn">Booking</button>
-    </form>
-    <div style="height:5px;"></div>
-</div>
-
-<!-- Trigger/Open The Modal -->
-<div id="myBtn" class="modal fade" tabindex="-1" aria-labelledby="myBtnLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content" style="padding:15px;">
-      <div class="modal-header">
-        <h1 class="modal-title" id="exampleModalLabel">Terms and Conditions</h1>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h1>Reservation policy</h1>
-        <ul style="margin: 10px;">
-          <li><h2>25% of the total amount of the reservation will be charged at the time of booking. The remaining balance must be paid upon arrival at the hotel.</h2></li>
-          <li><h2>This offer cannot be combined or exchanged with other current resort offers.</h2></li>
-          <li><h2>Promotions are not cumulative and cannot be combined with other current offers in other ATELIER de Hoteles resorts.</h2></li>
-          <li><h2>The published offers are calculated based on double occupancy.</h2></li>
-          <li><h2>All offers apply exclusively to new reservations.</h2></li>
-        </ul>
-        <h1>Cancellation Policy</h1>
-        <ul style="margin: 10px;">
-          <li><h2>Free cancellation until 15/Aug/2023 and a total refund of the deposit applies.</h2></li>
-          <li><h2>If cancelled after 15/Aug/2023, the deposit is non-refundable.</h2></li>
-        </ul>
+    <div class="col-sm-6" style="font-size:1.5rem;">
+      <div class="row">
+        <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
+          <h2>Cupon</h2>
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Enter your coupon code if you have one</label>
+                <input type="text" class="form-control" name="cupon">
+              </div>
+              <div class="form-group col-md-6">
+                <a class="btn">Apply</a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
+          <h2>Su reservacion</h2>
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <table class="table site-block-order-table mb-5">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>{{$data['date']}}</th>
+                    </tr></thead>
+                  <tbody>
+                    <tr>
+                      <td>Suites</td>
+                      <td>{{$data['suites']}}</td>
+                    </tr>
+                    <tr>
+                      <td>Adultos</td>
+                      <td>{{$data['adults']}}</td>
+                    </tr>
+                    <tr>
+                      <td>Nights</td>
+                      <td>{{$data['dates']}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-success">
+                        Descuento
+                      </td>
+                      <td id="tdTotal">0</td>
+                    </tr>
+                    <tr>
+                      <td><b>Total final</b></td>
+                      <td id="tdTotalFinal" data-total="20">${{$data['total']}} USD</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-group col-md-12">
+                <a class="btn">Booking</a>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 @endsection
 
 {{-- vendor script --}}
@@ -313,51 +337,4 @@
 
 {{-- page script --}}
 @section('page-script')
-<script>
-  $(function() {
-    var id, suite, price;
-    var req = $("h1#suites").html();
-    var date = $('input[name="fecha"]').val();
-    $('input[name="date"]').val(date);
-    $("button.select_btn").click(function(){
-      id = 0;
-      suite = 0;
-      price = 0;
-      $("select").css({"display":"none"});
-      $("button.select_btn").css({"display":""})
-      $(this).css({"display":"none"});
-      price = $(this).attr('id');
-      id = $(this).next().attr('id');
-      $(this).next().css({"display":""});
-      $("div#booking").css({"display":""});
-      suite = 1;
-      $("h1#suites").html(suite + req);
-      $("h1#total_price").html("USD $" + price);
-      $('input[name="id"]').val(id);
-      $('input[name="suite"]').val(suite);
-      $('input[name="total_price"]').val(price);
-    });
-    $('select').change(function(){ 
-        var value = $(this).val();
-        if(value == '0'){
-            $("div#booking").css({"display":"none"});
-            $(this).css({"display":"none"});
-            $(this).prev().css({"display":""});
-            suite = 0;
-            price = 0;
-            id = 0;
-            $(this).val('1');
-        } else{
-            id = $(this).attr('id');
-            suite = Number(value);
-            price = Number(price) * suite;
-            $("h1#suites").html(suite + req);
-            $("h1#total_price").html("USD $" + price);
-            $('input[name="id"]').val(id);
-            $('input[name="suite"]').val(suite);
-            $('input[name="total_price"]').val(price);
-        }
-    });
-  });
-</script>
 @endsection
