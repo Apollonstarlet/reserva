@@ -18,7 +18,7 @@ class CreateSuitesTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->float('price');
-            $table->string('image', 200);
+            $table->string('image');
             $table->integer('guests');
             $table->integer('num_beds');
             $table->string('area');

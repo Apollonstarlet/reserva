@@ -179,7 +179,6 @@ button:focus:not(:focus-visible) {
 button, input, optgroup, select, textarea {
     margin: 0;
     font-family: inherit;
-    font-size: inherit;
     line-height: inherit;
 }
 button, input {
@@ -2015,8 +2014,6 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 .btn-info {
     color: #fff;
-    background-color: #17a2b8;
-    border-color: #17a2b8;
 }
 .btn-info:hover {
     color: #fff;

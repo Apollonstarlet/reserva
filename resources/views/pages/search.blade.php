@@ -237,9 +237,9 @@
       <div class="res-des">
           <h1 class="heading" style="font-size: 2.5rem;font-family: Montecarlo; font-weight: 200;">{{$suite->name}}</h1>
           <p style="text-align: left;"><i class="fa-solid fa-house"></i> {{$suite->area}},&nbsp;&nbsp;<i class="fa-solid fa-bed"></i> {{$suite->num_beds}} camas,&nbsp;&nbsp;<i class="fa-solid fa-user"></i> Capacidad maxima: {{$suite->guests}}</p>
-          <p style="text-align: left;color:#c7893e"><i class="fa-solid fa-plus"></i>  full services</p>
+          <p style="text-align: left;color:#c7893e" data-toggle="modal" data-target="#serviceBtn"><i class="fa-brands fa-servicestack fa-fw"></i>  full services</p>
           <p style="font-family: Futura; text-align: justify; margin: 10px 10px;">{{$suite->description}}</p>
-          <p style="text-align: left;color:#c7893e"  data-toggle="modal" data-target="#myBtn"><i class="fa-solid fa-feather"></i>  Terms and Conditions</p>
+          <p style="text-align: left;color:#c7893e" data-toggle="modal" data-target="#myBtn"><i class="fa-solid fa-feather"></i>  Terms and Conditions</p>
           @php
           $price = (float)$suite->price * (int)$data['dates'];
           $price2 = $price * 2;
@@ -301,6 +301,66 @@
           <li><h2>Free cancellation until 15/Aug/2023 and a total refund of the deposit applies.</h2></li>
           <li><h2>If cancelled after 15/Aug/2023, the deposit is non-refundable.</h2></li>
         </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Trigger/Open The Modal -->
+<div id="serviceBtn" class="modal fade" tabindex="-1" aria-labelledby="serviceBtnLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="padding:15px;">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Suite details</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1>More Amenities</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li><h2>Ocean view</h2></li>
+              <li><h2>Private rooftop terrace with pergola bed, plunge bathtub and sun loungers</h2></li>
+              <li><h2>Signature Upscale Minibar*</h2></li>
+              <li><h2>Iron and ironing board</h2></li>
+              <li><h2>Digital alarm clock with USB ports</h2></li>
+              <li><h2>Molton Brown® Bathroom Amenities</h2></li>
+              <li><h2>Cordless phone</h2></li>
+              <li><h2>Marble bathroom with rain shower</h2></li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul>
+              <li><h2>Separate tub</h2></li>
+              <li><h2>Bathrobes and slippers</h2></li>
+              <li><h2>55" flat-screen TV</h2></li>
+              <li><h2>Cable TV</h2></li>
+              <li><h2>Laptop-sized safety box</h2></li>
+              <li><h2>Free Wi-Fi</h2></li>
+              <li><h2>Closet</h2></li>
+              <li><h2>Nespresso Coffeemaker</h2></li>
+              <li><h2>Movies and Channels On-Demand ($)</h2></li>
+              <li><h2>Daytime access to the INSPIRA Pool at El Cielo</h2></li>
+            </ul>
+          </div>
+        </div>
+        <h1>INSPIRA amenities</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <li><h2>Rolling Bar with a bottle of whiskey, tequila, vodka, and rum.</h2></li>
+              <li><h2>Bubbly Welcome®, a bottle of house wine and fruit in the suite upon arrival.</h2></li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul>
+              <li><h2>2Dreamy Pillows® pillow menu to guarantee your maximum rest</h2></li>
+              <li><h2>In-Suite Scent®, a variety of aromas (subject to availability).</h2></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

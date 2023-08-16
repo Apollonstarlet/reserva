@@ -226,28 +226,29 @@
 <section>
   <div class="row">
     <div class="col-sm-6" style="font-size:1.5rem;">
+      
       <div class="row">
         <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
           <h2>Informacion Personal</h2>
           <form>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Nombre</label>
-                <input type="text" class="form-control" name="name">
+                <label>Nombre*</label>
+                <input type="text" class="form-control" id="firstname">
               </div>
               <div class="form-group col-md-6">
-                <label>Apellidos</label>
-                <input type="text" class="form-control" name="lastname">
+                <label>Apellidos*</label>
+                <input type="text" class="form-control" id="lastname">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Email</label>
-                <input type="email" class="form-control" name="email">
+                <label>Email*</label>
+                <input type="email" class="form-control" id="email">
               </div>
               <div class="form-group col-md-6">
-                <label>Phone</label>
-                <input type="phone" class="form-control" name="phone">
+                <label>Phone*</label>
+                <input type="phone" class="form-control" id="phone">
               </div>
             </div>
             <div class="form-row">
@@ -270,69 +271,193 @@
       <div class="row">
         <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
           <h2>Cupon</h2>
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Enter your coupon code if you have one</label>
-                <input type="text" class="form-control" name="cupon">
-              </div>
-              <div class="form-group col-md-6">
-                <a class="btn">Apply</a>
-              </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Enter your coupon code if you have one</label>
+              <input type="text" class="form-control" name="cupon">
             </div>
-          </form>
+            <div class="form-group col-md-6">
+              <a class="btn">Apply</a>
+            </div>
+          </div>
         </div>
         <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
           <h2>Su reservacion</h2>
-          <form>
-            <div class="form-row">
-              <div class="form-group col-md-12">
-                <table class="table site-block-order-table mb-5">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>{{$data['date']}}</th>
-                    </tr></thead>
-                  <tbody>
-                    <tr>
-                      <td>Suites</td>
-                      <td>{{$data['suites']}}</td>
-                    </tr>
-                    <tr>
-                      <td>Adultos</td>
-                      <td>{{$data['adults']}}</td>
-                    </tr>
-                    <tr>
-                      <td>Nights</td>
-                      <td>{{$data['dates']}}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-success">
-                        Descuento
-                      </td>
-                      <td id="tdTotal">0</td>
-                    </tr>
-                    <tr>
-                      <td><b>Total final</b></td>
-                      <td id="tdTotalFinal" data-total="20">${{$data['total']}} USD</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="form-group col-md-12">
-                <a class="btn">Booking</a>
-              </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <table class="table site-block-order-table mb-5">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>{{$data['date']}}</th>
+                  </tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Suites</td>
+                    <td>{{$data['suites']}}</td>
+                  </tr>
+                  <tr>
+                    <td>Adultos</td>
+                    <td>{{$data['adults']}}</td>
+                  </tr>
+                  <tr>
+                    <td>Nights</td>
+                    <td>{{$data['dates']}}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-success">
+                      Descuento
+                    </td>
+                    <td id="tdTotal">0</td>
+                  </tr>
+                  <tr>
+                    <td><b>Total final</b></td>
+                    <td id="tdTotalFinal" data-total="20">USD ${{$data['total']}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </form>
+            <div class="form-group col-md-12">
+              <a class="btn" data-toggle="modal" data-target="#bookingBtn">Booking</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Trigger/Open The Modal -->
+<div id="bookingBtn" class="modal fade" tabindex="-1" aria-labelledby="bookingBtnLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="padding:15px;">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel"><strong>Payment Details</strong></h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <i class="fa-brands fa-cc-visa fa-3x" aria-hidden="true" style="margin-right:10px;"></i>
+            <i class="fa-brands fa-cc-mastercard  fa-3x" aria-hidden="true" style="margin-right:10px;"></i>
+            <i class="fa-brands fa-cc-discover  fa-3x" aria-hidden="true" style="margin-right:10px;"></i>
+            <i class="fa-brands fa-cc-amex fa-3x" aria-hidden="true" style="margin-right:10px;"></i>
+          </div>
+        </div>
+        <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+        {{ csrf_field() }}
+        <input type="hidden" name="price" value="{{$data['total']}}">
+        <input type="hidden" name="term" value="{{$data['date']}}">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="validationTooltipCardNumber"><strong>CARD NUMBER</strong></label>
+              <div class="input-group">
+                <input type="text" class="form-control card-number border-right-0" id="validationTooltipCardNumber" placeholder="Card Number"autocomplete='off' size='20'>
+                <div class="input-group-prepend">
+                  <span class="input-group-text rounded-right" id="validationTooltipCardNumber"><i class="fa fa-credit-card"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-12">
+            <div class="form-group">
+              <label for="exampleInputExpirationDate"><strong>Expiration Month</strong></label>
+              <input type="text" id="exampleInputExpirationDate" class='form-control card-expiry-month' placeholder='MM' size='2'>
+            </div>
+          </div>
+          <div class="col-md-4 col-12">
+            <div class="form-group">
+              <label for="exampleInputExpirationDate"><strong>Expiration Year</strong></label>
+              <input type="text" id="exampleInputExpirationDate" class='form-control card-expiry-year' placeholder='YYYY' size='4'>
+            </div>
+          </div>
+          <div class="col-md-4 col-12">
+            <div class="form-group">
+              <label for="exampleInputCvcCode"><strong>CVC CODE</strong></label>
+              <input type="text" class="form-control card-cvc" id="exampleInputCvcCode"autocomplete='off' placeholder='ex. 311' size='4'>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button class="btn">Pay Now (${{$data['total']}})</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 {{-- vendor script --}}
 @section('vendor-script')
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+$(function() {
+   
+    var $form         = $(".require-validation");
+    $('input#email').val();
+   
+    $('form.require-validation').bind('submit', function(e) {
+        var $form         = $(".require-validation"),
+        inputSelector = ['input[type=email]', 'input[type=password]',
+                         'input[type=text]', 'input[type=file]',
+                         'textarea'].join(', '),
+        $inputs       = $form.find('.required').find(inputSelector),
+        $errorMessage = $form.find('div.error'),
+        valid         = true;
+        $errorMessage.addClass('hide');
+  
+        $('.has-error').removeClass('has-error');
+        $inputs.each(function(i, el) {
+          var $input = $(el);
+          if ($input.val() === '') {
+            $input.parent().addClass('has-error');
+            $errorMessage.removeClass('hide');
+            e.preventDefault();
+          }
+        });
+   
+        if (!$form.data('cc-on-file')) {
+          $('input[name="email"]').val(email);
+          $('input[name="firstname"]').val(firstname);
+          e.preventDefault();
+          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+          Stripe.createToken({
+            number: $('.card-number').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+          }, stripeResponseHandler);
+        }
+  
+  });
+  
+  function stripeResponseHandler(status, response) {
+
+        let email = $('input#email').val();
+        let firstname = $('input#firstname').val();
+        if (response.error) {
+            $('.error')
+                .removeClass('hide')
+                .find('.alert')
+                .text(response.error.message);
+        } else {
+            /* token contains id, last4, and card type */
+            var token = response['id'];
+               
+            $form.find('input[type=text]').empty();
+            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/><input type='hidden' name='email' value='" + email + "'/><input type='hidden' name='firstname' value='" + firstname + "'/>");
+            $form.get(0).submit();
+        }
+    }
+   
+});
+</script>
 @endsection
 
 {{-- page script --}}

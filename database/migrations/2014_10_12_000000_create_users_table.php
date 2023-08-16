@@ -15,19 +15,16 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname', 50);
-            $table->string('lastname', 50);
-            $table->string('email', 60)->unique();
-            $table->string('password', 60);
-            $table->date('birthday')->nullable()->default(null);
-			$table->enum('sex', array('male', 'female'));
-            $table->string('address', 100)->nullable()->default(null);
-            $table->string('phone', 32)->nullable()->default(null);
-            $table->char('image', 20)->default('default.jpg');
-            $table->string('postal_code', 5)->nullable()->default(null);
-            $table->enum('role', array('super', 'staff', 'client'));
+            $table->string('firstname');
+            $table->string('lastname')->nullable()->default(null);
+            $table->string('email')->unique();
+            $table->enum('role', array('client', 'staff', 'super'));
+            $table->string('password');
+            $table->string('phone')->nullable()->default(null);
+            $table->string('country')->nullable()->default(null);
+            $table->char('image')->default('images/users/default.jpg');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('verification_code', 100)->nullable();
+            $table->string('verification_code')->nullable();
             $table->integer('is_verified')->default(0);
             $table->rememberToken();
             $table->timestamps();

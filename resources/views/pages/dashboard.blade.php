@@ -245,7 +245,6 @@
           <div class="slider-btn slider-btn-left" id="btn-left">&#60;</div>
       </div>
 </section>
-
 <!--APARTADO DE SUITES-->
 <section id="habitaciones" class="habitaciones">
   <section class="offer mtop">
