@@ -59,7 +59,7 @@
                           <input type="hidden" value="1" name="suite">
                       </div>
 
-                      <div class="box uno" style="display: flex;width: 150px; width: auto;">
+                      <div class="box uno" style="display: flex;width: 150px;">
                           <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
                           <input type="number" min="1" max="5" value="2" class="input" name="adultos" style="border: solid 1px #0000005e; width: 60px; height: 35px; border-radius: 5px;">
                       </div>
@@ -263,19 +263,25 @@
     @endforeach
 </section>
 <div id="booking" style="width:100%; background:#fff; position:fixed; bottom:0; box-shadow: 0 -4px 10px 0 rgba(0,0,0,.2); padding:10px; display: none;">
-    <h1 id="suites"> Suites, {{$data['adults']}} Adultos, {{$data['dates']}} Nights</h1>
-    <h1 id="total_price"></h1>
-    <form action="{{ asset('booking') }}" method="post">
-        {{ csrf_field() }}
-        <input type="hidden" name="dates" value="{{$data['dates']}}">
-        <input type="hidden" name="adultos" value="{{$data['adults']}}">
-        <input type="hidden" name="date">
-        <input type="hidden" name="id">
-        <input type="hidden" name="suite">
-        <input type="hidden" name="total_price">
-        <button type="submit" id="booking" class="btn">Booking</button>
-    </form>
-    <div style="height:5px;"></div>
+  <div class="row">
+    <div class="col-md-6">
+      <h1 id="suites"> Suites, {{$data['adults']}} Adultos, {{$data['dates']}} Nights</h1>
+      <h1 id="total_price"></h1>
+    </div>
+    <div class="col-md-6">
+      <form action="{{ asset('booking') }}" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="dates" value="{{$data['dates']}}">
+          <input type="hidden" name="adultos" value="{{$data['adults']}}">
+          <input type="hidden" name="date">
+          <input type="hidden" name="id">
+          <input type="hidden" name="suite">
+          <input type="hidden" name="total_price">
+          <button type="submit" id="booking" class="btn" style="margin-left: 0;">Book</button>
+          <!-- <a id="reset" class="btn" style="margin-left: 30px; background: #d2893e;">Reset</a> -->
+      </form>
+    </div>
+  </div>
 </div>
 
 <!-- Trigger/Open The Modal -->
@@ -374,95 +380,5 @@
 
 {{-- page script --}}
 @section('page-script')
-<script>
-  $(function() {
-    var id, suite, price;
-    var flag = 0;
-    var req = $("h1#suites").html();
-    var date = $('input[name="fecha"]').val();
-    $('input[name="date"]').val(date);
-    $("button.select_btn").click(function(){
-      id = 0;
-      if(flag == 0){
-        suite = 0;
-        price = 0;
-      }
-      flag += 1;
-      // $("select").css({"display":"none"});
-      // $("button.select_btn").css({"display":""})
-      $(this).css({"display":"none"});
-      price += Number($(this).attr('id'));
-      id = $(this).next().attr('id');
-      $(this).next().css({"display":""});
-      $("div#booking").css({"display":""});
-      suite += 1;
-      $("h1#suites").html(suite + req);
-      $("h1#total_price").html("USD $" + price);
-      $('input[name="id"]').val(id);
-      $('input[name="suite"]').val(suite);
-      $('input[name="total_price"]').val(price);
-    });
-    $('select').change(function(){ 
-        var id;
-        var value = $(this).val();
-        var dis = $(this).next().html();
-        var dis_array = dis.split(" Suites USD $");
-        var pre_suite = Number(dis_array[0]);
-        var pre_price = Number(dis_array[1]);
-        console.log(pre_price);
-        console.log(pre_suite);
-        if(value == '0'){
-            flag -= 1;
-            if(flag == 0){
-              $("div#booking").css({"display":"none"});
-            }
-            $(this).css({"display":"none"});
-            $(this).prev().css({"display":""});
-            
-            suite = suite - pre_suite;
-            price = price - pre_price;
-            id = 0;
-            $(this).val('1');
-            var one = Number($(this).prev().attr('id'));
-            $(this).next().html("1 Suites USD $" + one );
-        } else{
-            id = $(this).attr('id');
-            var suite_price = Number($(this).prev().attr('id'));
-            var current_price = Number(suite_price) * Number(value);
-            suite = suite + Number(value) - pre_suite;
-            price = price + current_price  - pre_price;
-            $(this).next().html(value +" Suites USD $" + current_price);
-        }
-        $("h1#suites").html(suite + req);
-        $("h1#total_price").html("USD $" + price);
-        $('input[name="id"]').val(id);
-        $('input[name="suite"]').val(suite);
-        $('input[name="total_price"]').val(price);
-    });
-    $("input.wine").change(function() {
-        var result = $(this).parent().parent().next().next().next();
-        if(this.checked) {
-            let init = result.html();
-            init += ", Wine- USD $1200";
-            result.html(init);
-        } else{
-            let init = result.html();
-            init = init.replace(", Wine- USD $1200", "");
-            result.html(init);
-        }
-    });
-    $("input.romantic").change(function() {
-        var result = $(this).parent().parent().next().next().next();
-        if(this.checked) {
-            let init = result.html();
-            init += ", Romantic- USD $1900";
-            result.html(init);
-        } else{
-            let init = result.html();
-            init = init.replace(", Romantic- USD $1900", "");
-            result.html(init);
-        }
-    });
-  });
-</script>
+<script src="js/custom.min.js"></script>
 @endsection
