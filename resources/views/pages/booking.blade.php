@@ -10,7 +10,7 @@
 
 @section('menu')
   <div id="menu-btn" class="fas fa-bars"></div>
-  <nav class="navbar" style="width: 60%;">
+  <nav class="navbar" style="width: 60%; height:auto;">
       <a href="{{env('APP_URL')}}#home">Casa</a>
       <a href="{{env('APP_URL')}}#habitaciones">Suites</a>
       <a href="{{env('APP_URL')}}#amenidades">Amenidades</a>

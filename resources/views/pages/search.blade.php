@@ -10,7 +10,7 @@
 
 @section('menu')
   <div id="menu-btn" class="fas fa-bars"></div>
-  <nav class="navbar" style="width: 60%;">
+  <nav class="navbar" style="width: 60%; height:auto;">
       <a href="{{env('APP_URL')}}#home">Casa</a>
       <a href="{{env('APP_URL')}}#habitaciones">Suites</a>
       <a href="{{env('APP_URL')}}#amenidades">Amenidades</a>
@@ -56,7 +56,7 @@
                   <div class="desplegable" style=" border-top: 1px solid #00000070;">
                       <div class="box" style="margin-left: 0;">
                           <label for="" class="form__label">Suite 1</label>
-                          <input type="number" min="1" max="1" value="1" class="input" name="suite" style="display: none;">
+                          <input type="hidden" value="1" name="suite">
                       </div>
 
                       <div class="box uno" style="display: flex;width: 150px; width: auto;">
@@ -222,7 +222,7 @@
 {{-- page content --}}
 @section('content')
 <!--EVENTOS APARTADO-->
-<div style="height: 10vh;"></div>
+<div style="height: 100px;"></div>
 <section>
     @foreach($data['suite'] as $suite)
     <div style="height: 2vh;"></div>
@@ -237,7 +237,7 @@
       <div class="res-des">
           <h1 class="heading" style="font-size: 2.5rem;font-family: Montecarlo; font-weight: 200;">{{$suite->name}}</h1>
           <p style="text-align: left;"><i class="fa-solid fa-house"></i> {{$suite->area}},&nbsp;&nbsp;<i class="fa-solid fa-bed"></i> {{$suite->num_beds}} camas,&nbsp;&nbsp;<i class="fa-solid fa-user"></i> Capacidad maxima: {{$suite->guests}}</p>
-          <p style="text-align: left;color:#c7893e" data-toggle="modal" data-target="#serviceBtn"><i class="fa-brands fa-servicestack fa-fw"></i>  full services</p>
+          <p style="text-align: left;color:#c7893e"><span style="font-size:15px;" data-toggle="modal" data-target="#serviceBtn"><i class="fa-brands fa-servicestack fa-fw"></i>  full services</span><span style="color: #0075ff;">&nbsp;&nbsp;<input type="checkbox" class="wine">&nbsp;&nbsp;Wine Bottle</span><span style="color: #0075ff;">&nbsp;&nbsp;<input type="checkbox" class="romantic">&nbsp;&nbsp;Romantic arrangement</span></p>
           <p style="font-family: Futura; text-align: justify; margin: 10px 10px;">{{$suite->description}}</p>
           <p style="text-align: left;color:#c7893e" data-toggle="modal" data-target="#myBtn"><i class="fa-solid fa-feather"></i>  Terms and Conditions</p>
           @php
@@ -247,7 +247,7 @@
           $price4 = $price * 4;
           $price5 = $price * 5;
           @endphp
-          <p style="font-size: 18px;text-align: left;">Total {{$data['adults']}} Adults, {{$data['dates']}} Nights - USD $ {{$price}}</p>
+          <p id="dis" style="font-size:18px; text-align:left;">Total {{$data['adults']}} Adults, {{$data['dates']}} Nights - USD $ {{$price}}</p>
           <button id="{{$price}}" class="btn select_btn" style="width:250px;#233734">Seleccionar</button>
           <select id="{{$suite->id}}" name="suite" class="btn" style="width:250px; display:none; background-color:#835e32;">
             <option value="1" selected>1 Suites USD ${{$price}}</option>
@@ -256,6 +256,7 @@
             <option value="4">4 Suites USD ${{$price4}}</option>
             <option value="0">Remove</option>
           </select>
+          <h6 style="display: none;">1 Suites USD ${{$price}}</h6>
           <div style="height:5px;"></div>
       </div>
     </div>
@@ -376,21 +377,25 @@
 <script>
   $(function() {
     var id, suite, price;
+    var flag = 0;
     var req = $("h1#suites").html();
     var date = $('input[name="fecha"]').val();
     $('input[name="date"]').val(date);
     $("button.select_btn").click(function(){
       id = 0;
-      suite = 0;
-      price = 0;
-      $("select").css({"display":"none"});
-      $("button.select_btn").css({"display":""})
+      if(flag == 0){
+        suite = 0;
+        price = 0;
+      }
+      flag += 1;
+      // $("select").css({"display":"none"});
+      // $("button.select_btn").css({"display":""})
       $(this).css({"display":"none"});
-      price = $(this).attr('id');
+      price += Number($(this).attr('id'));
       id = $(this).next().attr('id');
       $(this).next().css({"display":""});
       $("div#booking").css({"display":""});
-      suite = 1;
+      suite += 1;
       $("h1#suites").html(suite + req);
       $("h1#total_price").html("USD $" + price);
       $('input[name="id"]').val(id);
@@ -398,24 +403,64 @@
       $('input[name="total_price"]').val(price);
     });
     $('select').change(function(){ 
+        var id;
         var value = $(this).val();
+        var dis = $(this).next().html();
+        var dis_array = dis.split(" Suites USD $");
+        var pre_suite = Number(dis_array[0]);
+        var pre_price = Number(dis_array[1]);
+        console.log(pre_price);
+        console.log(pre_suite);
         if(value == '0'){
-            $("div#booking").css({"display":"none"});
+            flag -= 1;
+            if(flag == 0){
+              $("div#booking").css({"display":"none"});
+            }
             $(this).css({"display":"none"});
             $(this).prev().css({"display":""});
-            suite = 0;
-            price = 0;
+            
+            suite = suite - pre_suite;
+            price = price - pre_price;
             id = 0;
             $(this).val('1');
+            var one = Number($(this).prev().attr('id'));
+            $(this).next().html("1 Suites USD $" + one );
         } else{
             id = $(this).attr('id');
-            suite = Number(value);
-            price = Number(price) * suite;
-            $("h1#suites").html(suite + req);
-            $("h1#total_price").html("USD $" + price);
-            $('input[name="id"]').val(id);
-            $('input[name="suite"]').val(suite);
-            $('input[name="total_price"]').val(price);
+            var suite_price = Number($(this).prev().attr('id'));
+            var current_price = Number(suite_price) * Number(value);
+            suite = suite + Number(value) - pre_suite;
+            price = price + current_price  - pre_price;
+            $(this).next().html(value +" Suites USD $" + current_price);
+        }
+        $("h1#suites").html(suite + req);
+        $("h1#total_price").html("USD $" + price);
+        $('input[name="id"]').val(id);
+        $('input[name="suite"]').val(suite);
+        $('input[name="total_price"]').val(price);
+    });
+    $("input.wine").change(function() {
+        var result = $(this).parent().parent().next().next().next();
+        if(this.checked) {
+            let init = result.html();
+            init += ", Wine- USD $1200";
+            result.html(init);
+        } else{
+            let init = result.html();
+            init = init.replace(", Wine- USD $1200", "");
+            result.html(init);
+        }
+    });
+    $("input.romantic").change(function() {
+        var result = $(this).parent().parent().next().next().next();
+        if(this.checked) {
+            let init = result.html();
+            init += ", Romantic- USD $1900";
+            result.html(init);
+        } else{
+            let init = result.html();
+            init = init.replace(", Romantic- USD $1900", "");
+            result.html(init);
         }
     });
   });
