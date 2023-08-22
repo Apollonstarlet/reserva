@@ -18,7 +18,7 @@
       <a href="#historia">Historia</a>
       <a href="#actividades">Actividades</a>
       <a href="#contacto">Contacto</a>
-      <!-- <br>
+      <br>
       <div class="availability">
         <form action="{{ asset('search') }}" method="post" style="padding:1rem;">
         {{ csrf_field() }}
@@ -210,7 +210,7 @@
               <input type="submit" class="input responsive" value="Buscar" style="font-size: 13px; cursor: pointer; height: 25px; border-style: solid; border-color: #233734;">
           </div>
         </form>
-      </div> -->
+      </div> 
   </nav>
 @endsection
 
@@ -235,205 +235,6 @@
           </div>
           <div class="slider-btn slider-btn-right" id="btn-right">&#62;</div>
           <div class="slider-btn slider-btn-left" id="btn-left">&#60;</div>
-          <div class="availability">
-            <form action="{{ asset('search') }}" class="form-register" method="post" style="padding:1rem;">
-            {{ csrf_field() }}
-              <div class="box">
-                  <input type="text" name="fecha" class="input responsive" placeholder="Seleccionar fecha" style="font-size: 13px; cursor: pointer; height: 46px;" />
-                  <script>
-                      $(function() {
-                          $('input[name="fecha"]').daterangepicker({
-                                  locale: {
-                                      format: "YYYY-MM-DD"
-                                  },
-
-                                  startDate: moment().startOf('hour'),
-                                  endDate: moment().startOf('hour').add(48, 'hour')
-                              },
-
-                              function(start, end, label) {
-                                  console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-                              });
-                      });
-                  </script>
-              </div>
-              <div class="box" style="cursor: pointer;">
-                  <!--SUITE 1-->
-                  <div class="contenedor-input" style="border-radius: 5px;">
-
-                      <input type="checkbox" id="evento-click">
-
-                      <div class="boton-abrir" style="height: 46px;">
-                          <label for="evento-click" class="btn-open">
-                              <p style="padding-top: 12px;">Suites, Adultos</p>
-                          </label>
-                      </div>
-
-                      <div class="desplegable">
-                          <div class="box" style="margin-left: 0;">
-                              <label for="" class="form__label">Suite 1</label>
-                              <input type="number" min="1" max="1" value="1" class="input" name="suite" style="display: none;">
-                          </div>
-
-                          <div class="box uno" style="display: flex; margin-bottom: 8px; width: auto;">
-                              <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                              <input type="number" min="1" max="5" value="2" class="input" name="adultos" style="border: solid 1px #0000005e; width: 60px; height: 35px; border-radius: 5px;">
-                          </div>
-
-                          <input type="checkbox" id="click-agregar">
-                          <br>
-                          <label for="click-agregar" value="activar caja" onclick="activarcaja();activaradultos()" class="boton-agregar" style="font-size: 10px; padding: 6px;">Agregar Suite</label>
-
-                          <div class="desplegable-suite" style="border-top: 1px solid #00000073; margin-top: 10px;">
-                              <br>
-
-                              <label for="click-agregar" value="desactivar caja" onclick="desactivarcaja();desactivaradultos()" class="boton-agregarR" style="font-size: 10px; padding: 6px;">Eliminar suite</label>
-                              <!--SUITE 2-->
-                              <label for="" class="form__label">Suite 2</label>
-                              <input type="number" min="1" max="1" value="1" name="suite2" hidden id="caja" disabled="">
-                              <script type="text/javascript">
-                                  function activarcaja() {
-                                      document.getElementById('caja').disabled = false
-                                  }
-
-                                  function desactivarcaja() {
-                                      document.getElementById('caja').disabled = true
-                                  }
-                              </script>
-
-                              <div class="box uno" style="display: flex;">
-                                  <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                                  <input type="number" min="0" max="5" value="0" class="input" name="adultos2" id="adultos" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
-                                  <script type="text/javascript">
-                                      function activaradultos() {
-                                          document.getElementById('adultos').disabled = false
-                                      }
-
-                                      function desactivaradultos() {
-                                          document.getElementById('adultos').disabled = true
-                                      }
-                                  </script>
-
-                              </div>
-
-                              <input type="checkbox" id="suite3">
-                              <br>
-                              <label for="suite3" value="activar caja2" onclick="activarcaja2();activaradultos3()" class="boton-agregar" style="font-size: 10px; padding: 6px;">Agregar suite</label>
-
-                              <!--SUITE 3-->
-
-                              <div class="desplegable-suite3" style="border-top: 1px solid #00000073; margin-top: 10px;">
-                                  <br>
-                                  <label for="suite3" value="desactivar caja2" onclick="desactivarcaja2();desactivaradultos3()" class="boton-agregarR" style="font-size: 10px; padding: 6px;">Eliminar suite</label>
-
-                                  <label for="" class="form__label">Suite 3</label>
-                                  <input type="number" min="1" max="1" value="1" name="suite3" hidden id="caja2" disabled="">
-                                  <script type="text/javascript">
-                                      function activarcaja2() {
-                                          document.getElementById('caja2').disabled = false
-                                      }
-
-                                      function desactivarcaja3() {
-                                          document.getElementById('caja2').disabled = true
-                                      }
-                                  </script>
-
-                                  <div class="box uno" style="display: flex;">
-                                      <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                                      <input type="number" min="0" max="5" value="0" class="input" name="adultos3" id="adultos3" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
-                                      <script type="text/javascript">
-                                          function activaradultos3() {
-                                              document.getElementById('adultos3').disabled = false
-                                          }
-
-                                          function desactivaradultos3() {
-                                              document.getElementById('adultos3').disabled = true
-                                          }
-                                      </script>
-                                  </div>
-
-                                  <!--SUITE 4-->
-
-                                  <input type="checkbox" id="suite4">
-                                  <br>
-                                  <label for="suite4" value="activar caja3" onclick="activarcaja3();activaradultos4()" class="boton-agregar" style="font-size: 10px; padding: 6px;">Agregar suite</label>
-
-                                  <div class="desplegable-suite4" style="border-top: 1px solid #00000073; margin-top: 10px;">
-                                      <br>
-                                      <label for="suite4" value="desactivar caja3" onclick="desactivarcaja3();desactivaradultos4()" class="boton-agregarR" style="font-size: 10px; padding: 6px;">Eliminar suite</label>
-
-                                      <label for="" class="form__label">Suite 4</label>
-                                      <input type="number" min="1" max="1" value="1" name="suite4" hidden id="caja3" disabled="">
-                                      <script type="text/javascript">
-                                          function activarcaja3() {
-                                              document.getElementById('caja3').disabled = false
-                                          }
-
-                                          function desactivarcaja4() {
-                                              document.getElementById('caja3').disabled = true
-                                          }
-                                      </script>
-
-                                      <div class="box uno" style="display: flex;">
-                                          <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                                          <input type="number" min="0" max="5" value="0" class="input" name="adultos4" id="adultos4" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
-                                          <script type="text/javascript">
-                                              function activaradultos4() {
-                                                  document.getElementById('adultos4').disabled = false
-                                              }
-
-                                              function desactivaradultos4() {
-                                                  document.getElementById('adultos4').disabled = true
-                                              }
-                                          </script>
-                                      </div>
-
-                                      <!--SUITE 5-->
-                                      <input type="checkbox" id="suite5">
-                                      <br>
-                                      <label for="suite5" value="activar caja4" onclick="activarcaja4();activaradultos5()" class="boton-agregar" style="font-size: 10px; padding: 6px;">Agregar suite</label>
-
-                                      <div class="desplegable-suite5" style="border-top: 1px solid #00000073; margin-top: 10px;">
-                                          <br>
-                                          <label for="suite5" value="desactivar caja4" onclick="desactivarcaja4();desactivaradultos5()" class="boton-agregarR" style="font-size: 10px; padding: 6px;">Eliminar suite</label>
-
-                                          <label for="" class="form__label">Suite 5</label>
-                                          <input type="number" min="1" max="1" value="1" name="suite5" hidden id="caja4" disabled="">
-                                          <script type="text/javascript">
-                                              function activarcaja4() {
-                                                  document.getElementById('caja4').disabled = false
-                                              }
-
-                                              function desactivarcaja5() {
-                                                  document.getElementById('caja4').disabled = true
-                                              }
-                                          </script>
-
-                                          <div class="box uno" style="display: flex;">
-                                              <label for="" class="form__label" style="font-size: 15px; margin-left: 10px;">Adultos:</label>
-                                              <input type="number" min="0" max="5" value="0" class="input" name="adultos5" id="adultos5" disabled="" style="border: solid 1px #00000073; width: 60px; height: 35px; border-radius: 5px;">
-                                              <script type="text/javascript">
-                                                  function activaradultos5() {
-                                                      document.getElementById('adultos5').disabled = false
-                                                  }
-
-                                                  function desactivaradultos5() {
-                                                      document.getElementById('adultos5').disabled = true
-                                                  }
-                                              </script>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="box">
-                  <input type="submit" class="input responsive" value="Buscar" style="font-size: 13px; cursor: pointer; height: 46px;background: #c9b7b2;">
-              </div>
-            </form>
-          </div>
       </div>
   </div>
 </section>
