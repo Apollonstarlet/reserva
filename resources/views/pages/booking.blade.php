@@ -243,16 +243,6 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Email*</label>
-                <input type="email" class="form-control" id="email">
-              </div>
-              <div class="form-group col-md-6">
-                <label>Phone*</label>
-                <input type="phone" class="form-control" id="phone">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
                 <label for="inputState">Country</label>
                 <select id="inputState" class="form-control">
                   <option value="mx" selected>Mexico</option>
@@ -262,30 +252,24 @@
                   <option value="uk">Unitied Kingdorm</option>
                 </select>
               </div>
+              <div class="form-group col-md-6">
+                <label>Phone*</label>
+                <input type="tel" class="form-control" id="phone">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Email*</label>
+                <input type="email" class="form-control" id="email">
+              </div>
             </div>
           </form>
         </div>
-      </div>
-    </div>
-    <div class="col-sm-6" style="font-size:1.5rem;">
-      <div class="row">
         <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
-          <h2>Cupon</h2>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label>Enter your coupon code if you have one</label>
-              <input type="text" class="form-control" name="cupon">
-            </div>
-            <div class="form-group col-md-6">
-              <a class="btn">Apply</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
-          <h2>Su reservacion</h2>
+          <h2>Reservation Data</h2>
           <div class="form-row">
             <div class="form-group col-md-12">
-              <table class="table site-block-order-table mb-5">
+              <table class="table site-block-order-table">
                 <thead>
                   <tr>
                     <th>Fecha</th>
@@ -317,9 +301,111 @@
                 </tbody>
               </table>
             </div>
-            <div class="form-group col-md-12">
-              <a class="btn" data-toggle="modal" data-target="#bookingBtn">Booking</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" style="font-size:1.5rem;">
+      <div class="row">
+        <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
+          <h2>Cupon</h2>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Enter your coupon code if you have one</label>
+              <input type="text" class="form-control" name="cupon">
             </div>
+            <div class="form-group col-md-6">
+              <a class="btn">Apply</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
+          <h2>What card will you use?</h2>
+          <div class="form-group col-md-12">
+            <div class="form-check form-check-inline" style="border-radius: 10px; border: 1px solid #dee2e6; background: #f1f1f1; padding: 0.5rem;">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked>
+              <label class="form-check-label ml-1" for="inlineRadio1"><i class="fa-brands fa-cc-visa fa-3x" aria-hidden="true" style="margin-right:10px;"></i></label>
+            </div>
+            <div class="form-check form-check-inline" style="border-radius: 10px; border: 1px solid #dee2e6; background: #f1f1f1; padding: 0.5rem;">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+              <label class="form-check-label ml-1" for="inlineRadio2"><i class="fa-brands fa-cc-mastercard  fa-3x" aria-hidden="true" style="margin-right:10px;"></i></label>
+            </div>
+            <div class="form-check form-check-inline" style="border-radius: 10px; border: 1px solid #dee2e6; background: #f1f1f1; padding: 0.5rem;">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
+              <label class="form-check-label ml-1" for="inlineRadio3"><i class="fa-brands fa-cc-amex fa-3x" aria-hidden="true" style="margin-right:10px;"></i></label>
+            </div>
+          </div>
+          <div class="form-group col-md-12">
+            <span><input class="form-check-input" type="checkbox" id="terms"></span>
+            <p for="flexCheckDefault" class="ml-4">
+              I have read and accept the <span data-toggle="modal" data-target="#termsBtn" style="color:#c7893e;">Terms and Conditions</span> of the rate, the general conditions of reservation and the treatment in accordance with the provisions of the <span  data-toggle="modal" data-target="#policyBtn" style="color:#c7893e;">privacy policy</span>
+            </p>
+          </div>
+          <div class="form-group col-md-12">
+            <button id="continue" class="btn" style="width:100%" disabled>Continue</button>
+          </div>
+        </div>
+        <div id="payment-info" class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem; display: none;">
+          <h2>Payment Information</h2>
+          <div class="form-row">
+            <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+              {{ csrf_field() }}
+              <input type="hidden" name="price" value="{{$data['total']}}">
+              <input type="hidden" name="term" value="{{$data['date']}}">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="alert alert-danger" role="alert" style="display: none;">
+                    Payment information is wrong! Please check and try again.
+                    <button type="button" class="close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group" id="cardholder" style="display: none;">
+                    <label for="validationTooltipCardNumber">Cardholder Name  ( exactly as shown on card ) *</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control cardholder border-right-0" value="Master">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="validationTooltipCardNumber">Card Number*</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control card-number border-right-0" id="validationTooltipCardNumber" placeholder="Card Number"autocomplete='off'>
+                      <div class="input-group-prepend">
+                        <span class="input-group-text rounded-right" id="validationTooltipCardNumber"><i class="fa fa-credit-card"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 col-12">
+                  <div class="form-group">
+                    <label for="exampleInputExpirationDate">Expiration Month*</label>
+                    <input type="text" id="exampleInputExpirationDate" class='form-control card-expiry-month' placeholder='MM'>
+                  </div>
+                </div>
+                <div class="col-md-4 col-12">
+                  <div class="form-group">
+                    <label for="exampleInputExpirationDate">Expiration Year*</label>
+                    <input type="text" id="exampleInputExpirationDate" class='form-control card-expiry-year' placeholder='YYYY'>
+                  </div>
+                </div>
+                <div class="col-md-4 col-12">
+                  <div class="form-group">
+                    <label for="exampleInputCvcCode">Security Code*</label>
+                    <input type="text" class="form-control card-cvc" id="exampleInputCvcCode" autocomplete='off'>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <a id="pay" class="btn" style="width: 100%; text-align: center;">Pay Now (${{$data['total']}})</a>
+                <button id="payment" style="display: none;">Pay</button>
+              </div>
+              </form>
           </div>
         </div>
       </div>
@@ -328,65 +414,61 @@
 </section>
 
 <!-- Trigger/Open The Modal -->
-<div id="bookingBtn" class="modal fade" tabindex="-1" aria-labelledby="bookingBtnLabel" aria-hidden="true">
+<div id="termsBtn" class="modal fade" tabindex="-1" aria-labelledby="termsBtnLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content" style="padding:15px;">
       <div class="modal-header">
-        <h1 class="modal-title" id="exampleModalLabel"><strong>Payment Details</strong></h1>
+        <h1 class="modal-title" id="exampleModalLabel"><strong>Terms and Conditions</strong></h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12">
-            <i class="fa-brands fa-cc-visa fa-3x" aria-hidden="true" style="margin-right:10px;"></i>
-            <i class="fa-brands fa-cc-mastercard  fa-3x" aria-hidden="true" style="margin-right:10px;"></i>
-            <i class="fa-brands fa-cc-discover  fa-3x" aria-hidden="true" style="margin-right:10px;"></i>
-            <i class="fa-brands fa-cc-amex fa-3x" aria-hidden="true" style="margin-right:10px;"></i>
-          </div>
+          <p>Atelier De Hoteles reserves all rights to modify, combine, change or eliminate the rates and promotions shown on the website: www.atelierdehoteles.com, without prior notice.</p>
+          <p>These Terms and Conditions apply to all hotels on, but not limited to, the website www.atelierdehoteles.com, including ATELIER Playa Mujeres and OLEO Cancun Playa.</p>
+          <p>Anyone who browse within the portal and as a result of their interaction has reserved a stay at any of the hotels booked through www.atelierdehoteles.com or the Call Center is defined as a client or end user.</p>
+          <p>At the end of making a reservation on the site www.atelierdehoteles.com the client accepts the terms and conditions that are mentioned in this section, as well as the conditions that apply to the corresponding promotions that are currently valid on the website.</p>
+          <p>All rates shown at www.atelierdehoteles.com are dynamic, which means that they are constantly changing and depend on occupancy levels and/or season, with which Atelier De Hoteles has no obligation to honor a past or future rate which may be better different than that quoted at the current time.</p>
+          <p>The content and information of this website (including, but not limited to the price and availability of travel services) as well as the infrastructure used to provide such content and information is the exclusive property of Atelier De Hoteles. While limited copies of the travel itinerary (and related documents) are allowed for travel reservations or services made through this website, the user agrees not to modify, copy, distribute, transmit, display, present, reproduce, publish, authorize, alter, transfer, sell or resell information, software, products or services obtained through this website.</p>
         </div>
-        <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
-        {{ csrf_field() }}
-        <input type="hidden" name="price" value="{{$data['total']}}">
-        <input type="hidden" name="term" value="{{$data['date']}}">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="policyBtn" class="modal fade" tabindex="-1" aria-labelledby="policyBtnLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="padding:15px;">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel"><strong>Privacy Policy</strong></h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
         <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="validationTooltipCardNumber"><strong>CARD NUMBER</strong></label>
-              <div class="input-group">
-                <input type="text" class="form-control card-number border-right-0" id="validationTooltipCardNumber" placeholder="Card Number"autocomplete='off' size='20'>
-                <div class="input-group-prepend">
-                  <span class="input-group-text rounded-right" id="validationTooltipCardNumber"><i class="fa fa-credit-card"></i></span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p>In accordance with the provisions of the Federal Law on Protection of Personal Data Held by Private Parties, hereafter ("LFPDP") and its regulations, this privacy notice is issued in the following terms:</p>
+          <p>A). IDENTITY AND ADDRESS OF THE RESPONSIBLE.</p>
+          <p>Guc de Hoteles SA de CV ("Atelier Playa Mujeres") , legal person, duly constituted in accordance with the laws of Mexico, with address at Av. Bonampak, Supermanzana 10, Manzana 2, Lote 7, Fourth Floor Torre “B”. C.P. 77500, Cancun, Quintana Roo, Mexico, is the person responsible for the use and protection of your personal data which will be treated based on the principles of legality, consent, information, quality, purpose, loyalty, proportionality and responsibility in terms of the LFPDP; In this regard we inform you of the following:</p>
+          <p>B). PERSONAL DATA.</p>
+          <p>For the purposes indicated in this privacy notice, your data has been collected from the following sources: provided directly by you personally, by telephone, through email, as well as through our website www.atelierdehoteles.com. The personal data we obtain includes the following:</p>
+          <p>Data collected personally and directly, through the filling of registration cards, quality and control surveys, letters of confirmation, forms of transport services and letters of authorization of charges.</p>
         </div>
-        <div class="row">
-          <div class="col-md-4 col-12">
-            <div class="form-group">
-              <label for="exampleInputExpirationDate"><strong>Expiration Month</strong></label>
-              <input type="text" id="exampleInputExpirationDate" class='form-control card-expiry-month' placeholder='MM' size='2'>
-            </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="form-group">
-              <label for="exampleInputExpirationDate"><strong>Expiration Year</strong></label>
-              <input type="text" id="exampleInputExpirationDate" class='form-control card-expiry-year' placeholder='YYYY' size='4'>
-            </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="form-group">
-              <label for="exampleInputCvcCode"><strong>CVC CODE</strong></label>
-              <input type="text" class="form-control card-cvc" id="exampleInputCvcCode"autocomplete='off' placeholder='ex. 311' size='4'>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <button class="btn">Pay Now (${{$data['total']}})</button>
-        </div>
-        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Payment information is wrong. Please try again.</p>
       </div>
     </div>
   </div>
@@ -395,66 +477,177 @@
 
 {{-- vendor script --}}
 @section('vendor-script')
+<script src="{{asset('js/jquery.formatter.min.js')}}"></script>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
 $(function() {
-   
-    var $form         = $(".require-validation");
-    $('input#email').val();
+    var firstname, lastname, phone, email, cardholder, card_num, mm, yy, cvc;
+    var flag = 0;
+
+    $("input#firstname").change(function(){
+      firstname = $('input#firstname').val();
+      lastname = $('input#lastname').val();
+      phone = $('input#phone').val();
+      email = $('input#email').val();
+      if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
+        $('button#continue').prop('disabled', false);
+      } else{
+        $('button#continue').prop('disabled', true);
+      }
+    });
+    $("input#lastname").change(function(){
+      firstname = $('input#firstname').val();
+      lastname = $('input#lastname').val();
+      phone = $('input#phone').val();
+      email = $('input#email').val();
+      if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
+        $('button#continue').prop('disabled', false);
+      } else{
+        $('button#continue').prop('disabled', true);
+      }
+    });
+    $("input#phone").change(function(){
+      firstname = $('input#firstname').val();
+      lastname = $('input#lastname').val();
+      phone = $('input#phone').val();
+      email = $('input#email').val();
+      if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
+        $('button#continue').prop('disabled', false);
+      } else{
+        $('button#continue').prop('disabled', true);
+      }
+    });
+    $("input#email").change(function(){
+      firstname = $('input#firstname').val();
+      lastname = $('input#lastname').val();
+      phone = $('input#phone').val();
+      email = $('input#email').val();
+      if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
+        $('button#continue').prop('disabled', false);
+      } else{
+        $('button#continue').prop('disabled', true);
+      }
+    });
+    $('input#terms').change(function() {
+      firstname = $('input#firstname').val();
+      lastname = $('input#lastname').val();
+      phone = $('input#phone').val();
+      email = $('input#email').val();
+      if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
+        $('button#continue').prop('disabled', false);
+      } else{
+        $('button#continue').prop('disabled', true);
+      }
+    });
+
+    $("button#continue").click(function(){
+      $(this).css("display","none");
+      $('div#payment-info').css("display","");
+    });
+
+    $('input[type=radio][name=inlineRadioOptions]').change(function() {
+      card_num = $('.card-number').val('');
+      mm = $('.card-expiry-month').val('');
+      yy = $('.card-expiry-year').val('');
+      cvc = $('.card-cvc').val('');
+      if (this.value == '3') {
+        $('div#cardholder').css("display","");
+        cardholder = $('input.cardholder').val('');
+      } else{
+        $('div#cardholder').css("display","none");
+      }
+    });
+
+    $('#phone').formatter({
+        'pattern': '@{{9999999999}}',
+        'persistent': true
+      });
+    $('.card-number').formatter({
+        'pattern': '@{{9999999999999999999}}',
+        'persistent': true
+      });
+    $('.card-cvc').formatter({
+        'pattern': '@{{9999}}',
+        'persistent': true
+      });
+    $('.card-expiry-month').formatter({
+        'pattern': '@{{99}}',
+      });
+    $('.card-expiry-year').formatter({
+        'pattern': '@{{9999}}',
+      });
+
+    $('a#pay').click(function(){
+      card_num = $('.card-number').val();
+      mm = $('.card-expiry-month').val();
+      yy = $('.card-expiry-year').val();
+      cvc = $('.card-cvc').val();
+      cardholder = $('input.cardholder').val();
+
+      if (card_num.length > 14 && mm.length == 2 && yy.length == 4 && cvc.length > 2 && cardholder.length > 0){
+        $('button#payment').click();
+      } else{
+        $('div.alert-danger').css("display","");
+      }
+    });
+    $("button.close").click(function(){
+      $('div.alert-danger').css("display","none");
+    });
+
+    var $form  =  $(".require-validation");
    
     $('form.require-validation').bind('submit', function(e) {
-        var $form         = $(".require-validation"),
-        inputSelector = ['input[type=email]', 'input[type=password]',
-                         'input[type=text]', 'input[type=file]',
-                         'textarea'].join(', '),
-        $inputs       = $form.find('.required').find(inputSelector),
-        $errorMessage = $form.find('div.error'),
-        valid         = true;
-        $errorMessage.addClass('hide');
-  
-        $('.has-error').removeClass('has-error');
-        $inputs.each(function(i, el) {
-          var $input = $(el);
-          if ($input.val() === '') {
-            $input.parent().addClass('has-error');
-            $errorMessage.removeClass('hide');
-            e.preventDefault();
-          }
-        });
-   
-        if (!$form.data('cc-on-file')) {
-          $('input[name="email"]').val(email);
-          $('input[name="firstname"]').val(firstname);
+      var $form         = $(".require-validation"),
+      inputSelector = ['input[type=email]', 'input[type=password]',
+                       'input[type=text]', 'input[type=file]',
+                       'textarea'].join(', '),
+      $inputs       = $form.find('.required').find(inputSelector),
+      $errorMessage = $form.find('div.error'),
+      valid         = true;
+      $errorMessage.addClass('hide');
+
+      $('.has-error').removeClass('has-error');
+      $inputs.each(function(i, el) {
+        var $input = $(el);
+        if ($input.val() === '') {
+          $input.parent().addClass('has-error');
+          $errorMessage.removeClass('hide');
           e.preventDefault();
-          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-          Stripe.createToken({
-            number: $('.card-number').val(),
-            cvc: $('.card-cvc').val(),
-            exp_month: $('.card-expiry-month').val(),
-            exp_year: $('.card-expiry-year').val()
-          }, stripeResponseHandler);
         }
-  
+      });
+ 
+      if (!$form.data('cc-on-file')) {
+        $('input[name="email"]').val(email);
+        $('input[name="firstname"]').val(firstname);
+        e.preventDefault();
+        Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+        Stripe.createToken({
+          number: $('.card-number').val(),
+          cvc: $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year: $('.card-expiry-year').val()
+        }, stripeResponseHandler);
+      }
   });
   
   function stripeResponseHandler(status, response) {
 
-        let email = $('input#email').val();
-        let firstname = $('input#firstname').val();
-        if (response.error) {
-            $('.error')
-                .removeClass('hide')
-                .find('.alert')
-                .text(response.error.message);
-        } else {
-            /* token contains id, last4, and card type */
-            var token = response['id'];
-               
-            $form.find('input[type=text]').empty();
-            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/><input type='hidden' name='email' value='" + email + "'/><input type='hidden' name='firstname' value='" + firstname + "'/>");
-            $form.get(0).submit();
-        }
+    let email = $('input#email').val();
+    let firstname = $('input#firstname').val();
+    if (response.error) {
+        $('.error')
+            .removeClass('hide')
+            .find('.alert')
+            .text(response.error.message);
+    } else {
+        /* token contains id, last4, and card type */
+        var token = response['id'];
+           
+        $form.find('input[type=text]').empty();
+        $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/><input type='hidden' name='email' value='" + email + "'/><input type='hidden' name='firstname' value='" + firstname + "'/>");
+        $form.get(0).submit();
     }
+  }
    
 });
 </script>
