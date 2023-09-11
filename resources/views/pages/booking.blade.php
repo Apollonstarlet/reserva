@@ -11,13 +11,13 @@
 @section('menu')
   <div id="menu-btn" class="fas fa-bars"></div>
   <nav class="navbar" style="width: 60%; height:auto;">
-      <a href="{{env('APP_URL')}}#home">Casa</a>
-      <a href="{{env('APP_URL')}}#habitaciones">Suites</a>
-      <a href="{{env('APP_URL')}}#amenidades">Amenidades</a>
-      <a href="{{env('APP_URL')}}#info">Eventos</a>
-      <a href="{{env('APP_URL')}}#historia">Historia</a>
-      <a href="{{env('APP_URL')}}#actividades">Actividades</a>
-      <a href="{{env('APP_URL')}}#contacto">Contacto</a>
+      <a href="{{asset('/')}}#home">Casa</a>
+      <a href="{{asset('/')}}#habitaciones">Suites</a>
+      <a href="{{asset('/')}}#amenidades">Amenidades</a>
+      <a href="{{asset('/')}}#info">Eventos</a>
+      <a href="{{asset('/')}}#historia">Historia</a>
+      <a href="{{asset('/')}}#actividades">Actividades</a>
+      <a href="{{asset('/')}}#contacto">Contacto</a>
       <br>
       
       <div class="availability">
@@ -312,10 +312,16 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Enter your coupon code if you have one</label>
-              <input type="text" class="form-control" name="cupon">
+              <input type="text" id="coupon" class="form-control" name="cupon">
+              <div class="alert alert-danger alert-invalid" role="alert" style="display: none;">
+                Invalid Coupon<button type='button' class='close'><span aria-hidden='true' id='close'>&times;</span></button>
+              </div>
+              <div class="alert alert-success alert-valid" role="alert" style="display: none;">
+                Valid Coupon<button type='button' class='close'><span aria-hidden='true' id='close'>&times;</span></button>
+              </div>
             </div>
             <div class="form-group col-md-6">
-              <a class="btn">Apply</a>
+              <a class="btn" id="coupon">Apply</a>
             </div>
           </div>
         </div>
@@ -354,26 +360,15 @@
               <input type="hidden" name="term" value="{{$data['date']}}">
               <div class="row">
                 <div class="col-md-12">
-                  <div class="alert alert-danger" role="alert" style="display: none;">
-                    Payment information is wrong! Please check and try again.
-                    <button type="button" class="close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group" id="cardholder" style="display: none;">
-                    <label for="validationTooltipCardNumber">Cardholder Name  ( exactly as shown on card ) *</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control cardholder border-right-0" value="Master">
-                    </div>
+                  <div class="alert alert-danger alert-stripe" role="alert" style="display: none;">
+                    <button type='button' class='close'><span aria-hidden='true' id='close'>&times;</span></button>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="validationTooltipCardNumber">Card Number*</label>
+                    <label for="visa-num">Card Number*</label>
                     <div class="input-group">
-                      <input type="text" class="form-control card-number border-right-0" id="validationTooltipCardNumber" placeholder="Card Number"autocomplete='off'>
+                      <input type="text" class="form-control card-number border-right-0" id="visa-num" placeholder="Card Number"autocomplete='off'>
                       <div class="input-group-prepend">
                         <span class="input-group-text rounded-right" id="validationTooltipCardNumber"><i class="fa fa-credit-card"></i></span>
                       </div>
@@ -396,16 +391,15 @@
                 </div>
                 <div class="col-md-4 col-12">
                   <div class="form-group">
-                    <label for="exampleInputCvcCode">Security Code*</label>
-                    <input type="text" class="form-control card-cvc" id="exampleInputCvcCode" autocomplete='off'>
+                    <label for="visa-cvc">Security Code*</label>
+                    <input type="text" class="form-control card-cvc" id="visa-cvc" autocomplete='off'>
                   </div>
                 </div>
               </div>
               <div class="col-md-12">
-                <a id="pay" class="btn" style="width: 100%; text-align: center;">Pay Now (${{$data['total']}})</a>
-                <button id="payment" style="display: none;">Pay</button>
+                <button class="btn" style="width: 100%">Pay Now (${{$data['total']}})</button>
               </div>
-              </form>
+            </form>
           </div>
         </div>
       </div>
@@ -491,6 +485,7 @@ $(function() {
       email = $('input#email').val();
       if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
         $('button#continue').prop('disabled', false);
+        $('.cardholder').val(firstname +' '+ lastname);
       } else{
         $('button#continue').prop('disabled', true);
       }
@@ -502,6 +497,7 @@ $(function() {
       email = $('input#email').val();
       if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
         $('button#continue').prop('disabled', false);
+        $('.cardholder').val(firstname +' '+ lastname);
       } else{
         $('button#continue').prop('disabled', true);
       }
@@ -513,6 +509,7 @@ $(function() {
       email = $('input#email').val();
       if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
         $('button#continue').prop('disabled', false);
+        $('.cardholder').val(firstname +' '+ lastname);
       } else{
         $('button#continue').prop('disabled', true);
       }
@@ -524,6 +521,7 @@ $(function() {
       email = $('input#email').val();
       if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
         $('button#continue').prop('disabled', false);
+        $('.cardholder').val(firstname +' '+ lastname);
       } else{
         $('button#continue').prop('disabled', true);
       }
@@ -535,6 +533,7 @@ $(function() {
       email = $('input#email').val();
       if (firstname.length > 0 && lastname.length > 0 && phone.length > 9 && email.length > 0 && $('input#terms').is(':checked')){
         $('button#continue').prop('disabled', false);
+        $('.cardholder').val(firstname +' '+ lastname);
       } else{
         $('button#continue').prop('disabled', true);
       }
@@ -545,16 +544,14 @@ $(function() {
       $('div#payment-info').css("display","");
     });
 
-    $('input[type=radio][name=inlineRadioOptions]').change(function() {
-      card_num = $('.card-number').val('');
-      mm = $('.card-expiry-month').val('');
-      yy = $('.card-expiry-year').val('');
-      cvc = $('.card-cvc').val('');
-      if (this.value == '3') {
-        $('div#cardholder').css("display","");
-        cardholder = $('input.cardholder').val('');
+    $("a#coupon").click(function(){
+      var coupon_val = $('input#coupon').val();
+      if(coupon_val == "AD15-G4N0-E90D-L2QY"){
+        $('div.alert-valid').css("display","");
+        $('div.alert-invalid').css("display","none");
       } else{
-        $('div#cardholder').css("display","none");
+        $('div.alert-invalid').css("display","");
+        $('div.alert-valid').css("display","none");
       }
     });
 
@@ -562,36 +559,9 @@ $(function() {
         'pattern': '@{{9999999999}}',
         'persistent': true
       });
-    $('.card-number').formatter({
-        'pattern': '@{{9999999999999999999}}',
-        'persistent': true
-      });
-    $('.card-cvc').formatter({
-        'pattern': '@{{9999}}',
-        'persistent': true
-      });
-    $('.card-expiry-month').formatter({
-        'pattern': '@{{99}}',
-      });
-    $('.card-expiry-year').formatter({
-        'pattern': '@{{9999}}',
-      });
 
-    $('a#pay').click(function(){
-      card_num = $('.card-number').val();
-      mm = $('.card-expiry-month').val();
-      yy = $('.card-expiry-year').val();
-      cvc = $('.card-cvc').val();
-      cardholder = $('input.cardholder').val();
-
-      if (card_num.length > 14 && mm.length == 2 && yy.length == 4 && cvc.length > 2 && cardholder.length > 0){
-        $('button#payment').click();
-      } else{
-        $('div.alert-danger').css("display","");
-      }
-    });
-    $("button.close").click(function(){
-      $('div.alert-danger').css("display","none");
+    $('span#close').click(function(){
+      $('div.alert').css("display","none");
     });
 
     var $form  =  $(".require-validation");
@@ -639,6 +609,8 @@ $(function() {
             .removeClass('hide')
             .find('.alert')
             .text(response.error.message);
+        $('div.alert-stripe').css("display","");
+        $('div.alert-stripe').append(response.error.message);
     } else {
         /* token contains id, last4, and card type */
         var token = response['id'];

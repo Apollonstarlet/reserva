@@ -22,15 +22,15 @@ class StripePaymentController extends Controller
                 "amount" => (int)$request->price * 100,
                 "currency" => "usd",
                 "source" => $request->stripeToken,
-                "description" => "Test payment from itsolutionstuff.com." 
+                "description" => "Test payment for testing Reservation." 
         ]);
 
         $mail_data = array('name' => $request->firstname, 'term' => $request->term, 'price' => $request->price);
         $toMail = $request->email;
-        Mail::send('pages.send_invoice', $mail_data, function($message) use ($toMail) {
-            $message->from('reservamariaaurora647@gmail.com', 'Reserva María Aurora');
-            $message->to($toMail)->subject('Test - Suite Booking Invoice');
-          });
+        // Mail::send('pages.send_invoice', $mail_data, function($message) use ($toMail) {
+        //     $message->from('reservamariaaurora647@gmail.com', 'Reserva María Aurora');
+        //     $message->to($toMail)->subject('Test - Suite Booking Invoice');
+        //   });
   
         Session::flash('success', 'Payment successful!');
           

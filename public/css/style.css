@@ -840,11 +840,11 @@ section{
 
 .availability form{
     display: flex;
-    height: 20%;
     flex-wrap: wrap;
     gap: 1.5rem;
     padding: 2rem;
     border-radius: .5rem;
+    background: #233734;
 }
 
 .box{

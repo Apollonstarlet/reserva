@@ -11,13 +11,13 @@
 @section('menu')
   <div id="menu-btn" class="fas fa-bars"></div>
   <nav class="navbar" style="width: 60%; height:auto;">
-      <a href="{{env('APP_URL')}}#home">Casa</a>
-      <a href="{{env('APP_URL')}}#habitaciones">Suites</a>
-      <a href="{{env('APP_URL')}}#amenidades">Amenidades</a>
-      <a href="{{env('APP_URL')}}#info">Eventos</a>
-      <a href="{{env('APP_URL')}}#historia">Historia</a>
-      <a href="{{env('APP_URL')}}#actividades">Actividades</a>
-      <a href="{{env('APP_URL')}}#contacto">Contacto</a>
+      <a href="{{asset('/')}}#home">Casa</a>
+      <a href="{{asset('/')}}#habitaciones">Suites</a>
+      <a href="{{asset('/')}}#amenidades">Amenidades</a>
+      <a href="{{asset('/')}}#info">Eventos</a>
+      <a href="{{asset('/')}}#historia">Historia</a>
+      <a href="{{asset('/')}}#actividades">Actividades</a>
+      <a href="{{asset('/')}}#contacto">Contacto</a>
       <br>
       
       <div class="availability">
