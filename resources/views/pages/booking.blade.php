@@ -308,7 +308,7 @@
     <div class="col-sm-6" style="font-size:1.5rem;">
       <div class="row">
         <div class="col-sm-12" style="border-radius:10px; border: 1px solid #dee2e6;background: #f1f1f1;padding: 1.75rem;">
-          <h2>Cupon</h2>
+          <h2>Coupon</h2>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Enter your coupon code if you have one</label>
@@ -356,7 +356,7 @@
           <div class="form-row">
             <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
               {{ csrf_field() }}
-              <input type="hidden" name="price" value="{{$data['total']}}">
+              <input type="hidden" name="price" id="price" value="{{$data['total']}}">
               <input type="hidden" name="term" value="{{$data['date']}}">
               <div class="row">
                 <div class="col-md-12">
@@ -397,7 +397,7 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <button class="btn" style="width: 100%">Pay Now (${{$data['total']}})</button>
+                <button class="btn" style="width: 100%" id="pay-now">Pay Now (${{$data['total']}})</button>
               </div>
             </form>
           </div>
@@ -549,6 +549,11 @@ $(function() {
       if(coupon_val == "AD15-G4N0-E90D-L2QY"){
         $('div.alert-valid').css("display","");
         $('div.alert-invalid').css("display","none");
+        var total = $('input#price').val();
+        total = Number(total)*0.95;
+        console.log(total);
+        $('input#price').val(total);
+        $('#pay-now').html("Pay Now ($"+ total.toFixed(2) +")");
       } else{
         $('div.alert-invalid').css("display","");
         $('div.alert-valid').css("display","none");
