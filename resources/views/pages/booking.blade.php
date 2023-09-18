@@ -552,7 +552,7 @@ $(function() {
         var total = $('input#price').val();
         total = Number(total)*0.95;
         console.log(total);
-        $('input#price').val(total);
+        $('input#price').val(total.toFixed(2));
         $('#pay-now').html("Pay Now ($"+ total.toFixed(2) +")");
       } else{
         $('div.alert-invalid').css("display","");
@@ -562,6 +562,23 @@ $(function() {
 
     $('#phone').formatter({
         'pattern': '@{{9999999999}}',
+        'persistent': true
+      });
+
+    $('card-number').formatter({
+        'pattern': '@{{9999999999999999}}',
+        'persistent': true
+      });
+    $('.card-cvc').formatter({
+        'pattern': '@{{999}}',
+        'persistent': true
+      });
+    $('.card-expiry-month').formatter({
+        'pattern': '@{{99}}',
+        'persistent': true
+      });
+    $('.card-expiry-year').formatter({
+        'pattern': '@{{9999}}',
         'persistent': true
       });
 

@@ -31,7 +31,7 @@
                         <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="border-collapse:collapse;border-spacing:0px">
                           <tbody><tr style="border-collapse:collapse">
                             <td align="left" class="m_-8123929813580343990es-m-txt-c" style="padding:0;margin:0;font-size:0px">
-<img class="m_-8123929813580343990logo CToWUd" src="https://tunebump.com/images/tunebump-logo6.png" width="160" border="0" style="max-width:160px;font-family:'Dm Sans',Arial,Sans-serif;font-size:15px;line-height:18px;color:#eb4426;font-weight:400" data-bit="iit">
+<img class="m_-8123929813580343990logo CToWUd" src="{{asset('imagenes/LaAurora_verde.jpg')}}" width="160" border="0" style="max-width:160px;font-family:'Dm Sans',Arial,Sans-serif;font-size:15px;line-height:18px;color:#eb4426;font-weight:400" data-bit="iit">
                             </td>
                             <td align="right" class="m_-8123929813580343990mob_dis"> <b class="m_-8123929813580343990es-m-txt-c" style="padding:0;margin:0;font-family:'Dm Sans',Arial,Sans-serif;color:#000;font-size:16px;line-height:55px;letter-spacing:6px;text-transform:uppercase"> </td>
                           </tr>
@@ -65,7 +65,7 @@
                               <tr bgcolor="#ffffff">
                                 <td class="m_-8123929813580343990el_aside10" valign="top" align="left" bgcolor="#ffffff" style="color:#000000;font-family:'Dm Sans',Arial,Sans-serif;font-size:18px;line-height:44px;padding-right:35px;padding-left:35px;font-weight:400;text-align:center">
                                   <strong style="font-size:32px;line-height:44px;font-family:'Dm Sans',Arial,Sans-serif;color:#212121" class="m_-8123929813580343990title_mob">
-                                    Playlist Accepted
+                                    Suite Booking Invoice
                                   </strong>
                                 </td>
                               </tr>
@@ -90,6 +90,9 @@
                                 </td>
                               </tr> <tr>
                                 <td class="m_-8123929813580343990el_h40" style="height:20px" bgcolor="#ffffff">&nbsp;</td>
+                              </tr> <tr>
+                                <td class="m_-8123929813580343990el_aside10" valign="middle" align="left" style="color:#545454;font-family:'Dm Sans',Arial,Sans-serif;font-size:18px;line-height:25px;padding-right:50px;padding-left:50px;font-weight:500;">Hotel Reservation Data
+                                </td>
                               </tr> <tr>
                                 <td class="m_-8123929813580343990el_aside10" valign="middle" align="left" style="color:#545454;font-family:'Dm Sans',Arial,Sans-serif;font-size:16px;line-height:25px;padding-right:50px;padding-left:50px;font-weight:500;">Term: {{ $term}}<br> Total Price: ${{ $price}} USD
                                 </td>
